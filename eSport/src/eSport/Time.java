@@ -1,13 +1,50 @@
 package eSport;
 
 import java.util.List;
+import java.io.Serializable;
 
-public class Time {
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TIME")
+@SequenceGenerator(name = "SEQUENCE.TIME_ID_SEQ", 
+		sequenceName = "TIME_ID_SEQ", allocationSize = 0)
+
+public class Time implements Serializable {
 	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1159402279176937394L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
+			generator = "SEQUENCE.TIME_ID_SEQ")
 	private Integer id;
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinTable(name="ORGANIZACAO",
+    joinColumns={@JoinColumn(name="id_Time",
+    referencedColumnName="id")},
+	 inverseJoinColumns={@JoinColumn(name="id", 
+             referencedColumnName="id_Time")})
 	private Organizacao organizacao;
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="USUARIO")
 	private List<Usuario> membros;
+	@Column(name="CAPITAO")
 	private Integer capitao;
+	@ManyToOne
 	private Jogo jogo;
 	
 	public Integer getId() {

@@ -1,14 +1,25 @@
 package eSport;
 
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
 public class Campeonato {
 	
+	@Id
+	@GeneratedValue
 	private Integer id;
 	private String nome;
 	private String descricao;
+	@ManyToOne
 	private Jogo jogo;
+	@OneToMany
 	private List<Time> listaTimesParticipantes;
+	@ManyToOne
 	private Organizacao organizacao;
 	
 	public Integer getId() {

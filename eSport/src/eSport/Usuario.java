@@ -1,14 +1,47 @@
 package eSport;
 
-public class Usuario {
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "USUARIO")
+@SequenceGenerator(name = "SEQUENCE.USUARIO_ID_SEQ", 
+		sequenceName = "USUARIO_ID_SEQ", allocationSize = 0)
+
+public class Usuario implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4278573543695575734L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
+			generator = "SEQUENCE.USUARIO_ID_SEQ")
 	private Integer id;
+	@Column(name="NOME")
 	private String nome;
+	@Column(name="NOMEUSUARIO")
 	private String nomeUsuario;
+	@Column(name="NOMEPERFIL")
 	private String nomePerfil;
+	@Column(name="SOBRENOME")
 	private String sobrenome;
+	@Column(name="SENHA")
 	private String senha;
+
+	@ManyToOne
 	private Time time;
+	@OneToOne()
 	private Organizacao organizacao;
 	
 	public Integer getId() {
