@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.transaction.TransactionScoped;
 
 @Entity
 @Table(name = "ORGANIZACAO")
@@ -32,16 +34,18 @@ public class Organizacao implements Serializable {
 	private Integer id;
 	@Column(name="NOME")
 	private String nome;
-	@OneToOne(mappedBy = "organizacao")
-	@Column(name="FUNDADOR")
+	//@OneToOne(mappedBy = "organizacao")
+	//@Column(name="FUNDADOR")
 	private Usuario fundador;
-	@Column(name="Id_Time")
-	private Integer id_Time;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="TIME")
+	//@Column(name="Id_Time")
+	//private Integer id_Time;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="organizacao")
 	private List<Time> times;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="CAMPEONATO")
+	//@OneToMany(cascade = CascadeType.ALL)
+	@Transient
 	private List<Campeonato> campeonatos;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="JOGO")
+	//@OneToMany(cascade = CascadeType.ALL)
+	@Transient
 	private List<Jogo> jogosAtuantes;
 	
 	public Integer getId() {
@@ -82,4 +86,3 @@ public class Organizacao implements Serializable {
 	}
 
 }
-

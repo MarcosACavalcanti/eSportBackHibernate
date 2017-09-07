@@ -1,26 +1,40 @@
 package eSport;
 
+import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+
 
 @Entity
-public class Campeonato {
+@Table(name = "CAMPEONATO")
+@SequenceGenerator(name = "SEQUENCE.CAMPEONATO_ID_SEQ", 
+		sequenceName = "CAMPEONATO_ID_SEQ", allocationSize = 0)
+public class Campeonato implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4585946173214080193L;
 	@Id
 	@GeneratedValue
 	private Integer id;
+	@Column(name="NOME")
 	private String nome;
+	@Column(name="descricao")
 	private String descricao;
-	@ManyToOne
+	@Column(name="jogo")
 	private Jogo jogo;
-	@OneToMany
-	private List<Time> listaTimesParticipantes;
-	@ManyToOne
-	private Organizacao organizacao;
 	
 	public Integer getId() {
 		return id;
@@ -46,17 +60,6 @@ public class Campeonato {
 	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
 	}
-	public List<Time> getListaTimesParticipantes() {
-		return listaTimesParticipantes;
-	}
-	public void setListaTimesParticipantes(List<Time> listaTimesParticipantes) {
-		this.listaTimesParticipantes = listaTimesParticipantes;
-	}
-	public Organizacao getOrganizacao() {
-		return organizacao;
-	}
-	public void setOrganizacao(Organizacao organizacao) {
-		this.organizacao = organizacao;
-	}
+
 
 }

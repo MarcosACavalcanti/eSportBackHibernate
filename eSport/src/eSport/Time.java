@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "TIME")
@@ -33,18 +34,14 @@ public class Time implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
 			generator = "SEQUENCE.TIME_ID_SEQ")
 	private Integer id;
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinTable(name="ORGANIZACAO",
-    joinColumns={@JoinColumn(name="id_Time",
-    referencedColumnName="id")},
-	 inverseJoinColumns={@JoinColumn(name="id", 
-             referencedColumnName="id_Time")})
+	@ManyToOne
 	private Organizacao organizacao;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="USUARIO")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="time")
 	private List<Usuario> membros;
 	@Column(name="CAPITAO")
 	private Integer capitao;
-	@ManyToOne
+	//@ManyToOne
+	@Transient
 	private Jogo jogo;
 	
 	public Integer getId() {
