@@ -1,4 +1,4 @@
-<%@page import="eSport.Usuario"%>
+<%@page import="eSport.Jogador"%>
 <%@page import="javax.persistence.Persistence"%>
 <%@page import="javax.persistence.EntityManager"%>
 <%@page import="javax.persistence.EntityManagerFactory"%>
@@ -17,7 +17,7 @@ Rodando....
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("Usuarios");
 EntityManager em = emf.createEntityManager();
 
-Usuario novoUsuario = new Usuario();
+Jogador novoUsuario = new Jogador();
 novoUsuario.setNome("Marcos");
 novoUsuario.setNomePerfil("MarcosAC");
 novoUsuario.setNomeUsuario("Marcos123");

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,8 +30,10 @@ public class Campeonato implements Serializable {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@Column(name="NOME")
-	private String nome;
+	@Column(name="Campeonato")
+	private String campeonato;
+	@OneToOne()
+	private Organizacao organizacao_Campeonato;
 	@Column(name="descricao")
 	private String descricao;
 	@Column(name="jogo")
@@ -41,12 +44,6 @@ public class Campeonato implements Serializable {
 	}
 	public void setId(Integer id) {
 		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -60,6 +57,14 @@ public class Campeonato implements Serializable {
 	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
 	}
+	public String getCampeonato() {
+		return campeonato;
+	}
+	public void setCampeonato(String campeonato) {
+		this.campeonato = campeonato;
+	}
+	
+	
 
 
 }

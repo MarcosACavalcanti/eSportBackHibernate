@@ -14,11 +14,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USUARIO")
-@SequenceGenerator(name = "SEQUENCE.USUARIO_ID_SEQ", 
-		sequenceName = "USUARIO_ID_SEQ", allocationSize = 0)
+@Table(name = "JOGADOR")
+@SequenceGenerator(name = "SEQUENCE.JOGADOR_ID_SEQ", 
+		sequenceName = "JOGADOR_ID_SEQ", allocationSize = 0)
 
-public class Usuario implements Serializable {
+public class Jogador implements Serializable {
 	
 	/**
 	 * 
@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 4278573543695575734L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
-			generator = "SEQUENCE.USUARIO_ID_SEQ")
+			generator = "SEQUENCE.JOGADOR_ID_SEQ")
 	private Integer id;
 	@Column(name="NOME")
 	private String nome;
@@ -38,9 +38,13 @@ public class Usuario implements Serializable {
 	private String sobrenome;
 	@Column(name="SENHA")
 	private String senha;
-
-	@ManyToOne
+	@Column(name="Capitao_do_Time")
+	private Integer capdotime;
+	
+	@OneToOne()
 	private Time time;
+	@OneToOne()
+	private Organizacao timeCapitao;
 	@OneToOne()
 	private Organizacao organizacao;
 	
@@ -92,5 +96,19 @@ public class Usuario implements Serializable {
 	public void setOrganizacao(Organizacao organizacao) {
 		this.organizacao = organizacao;
 	}
+	public Integer getCapdotime() {
+		return capdotime;
+	}
+	public void setCapdotime(Integer capdotime) {
+		this.capdotime = capdotime;
+	}
+	public Organizacao getTimeCapitao() {
+		return timeCapitao;
+	}
+	public void setTimeCapitao(Organizacao timeCapitao) {
+		this.timeCapitao = timeCapitao;
+	}
+	
+	
 
 }

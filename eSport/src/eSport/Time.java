@@ -37,12 +37,11 @@ public class Time implements Serializable {
 	@ManyToOne
 	private Organizacao organizacao;
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="time")
-	private List<Usuario> membros;
-	@Column(name="CAPITAO")
-	private Integer capitao;
-	//@ManyToOne
-	@Transient
-	private Jogo jogo;
+	private List<Jogador> membros;
+	@OneToOne(cascade=CascadeType.ALL,mappedBy="timeCapitao")
+	private Jogador capitao;
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="jogotime")
+	private List<Jogo> jogotime;
 	
 	public Integer getId() {
 		return id;
@@ -56,17 +55,24 @@ public class Time implements Serializable {
 	public void setOrganizacao(Organizacao organizacao) {
 		this.organizacao = organizacao;
 	}
-	public List<Usuario> getMembros() {
+	public List<Jogador> getMembros() {
 		return membros;
 	}
-	public void setMembros(List<Usuario> membros) {
+	public void setMembros(List<Jogador> membros) {
 		this.membros = membros;
 	}
-	public Jogo getJogo() {
-		return jogo;
+	public Jogador getCapitao() {
+		return capitao;
 	}
-	public void setJogo(Jogo jogo) {
-		this.jogo = jogo;
+	public void setCapitao(Jogador capitao) {
+		this.capitao = capitao;
 	}
+	public List<Jogo> getJogotime() {
+		return jogotime;
+	}
+	public void setJogotime(List<Jogo> jogotime) {
+		this.jogotime = jogotime;
+	}
+
 
 }
