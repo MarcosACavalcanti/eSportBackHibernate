@@ -1,36 +1,31 @@
 package eSport;
 
-import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "JOGO")
-@SequenceGenerator(name = "SEQUENCE.JOGO_ID_SEQ", 
-		sequenceName = "JOGO_ID_SEQ", allocationSize = 0)
+@SequenceGenerator(name = "JOGS_SEQ", sequenceName = "JOGO_SEQ", allocationSize = 1)
 public class Jogo implements Serializable {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -938962287227445106L;
+	private static final long serialVersionUID = -5952509081045666234L;
+	/**
+	 * 
+	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
-	generator = "SEQUENCE.JOGO_ID_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JOGS_SEQ")
 	private Integer id;
-	@Column(name="NOME")
 	private String nome;
-	@Column(name="DESCRICAO")
 	private String descricao;
-	@Column(name="NUMERODEJOGADORES")
 	private Integer numeroDeJogadores;
 	
 	@ManyToOne()

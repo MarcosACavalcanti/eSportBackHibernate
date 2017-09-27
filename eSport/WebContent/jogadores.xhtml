@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<p:messages globalOnly="true" autoUpdate="true" />
+	<p:growl globalOnly="true" autoUpdate="true" />
+
+	<h:form id="jogadoressTableForm">
+
+		<p:dataTable id="jogadoresTable" var="jogador"
+			value="#{jogadoressBean.jogadores}">
+			<p:column headerText="Id">
+				<h:outputText value="#{jogador.id}" />
+			</p:column>
+
+			<p:column headerText="Nome">
+				<h:outputText value="#{jogador.nome}" />
+			</p:column>
+
+			<p:column headerText="Usuario">
+				<h:outputText value="#{jogador.nomeUsuario}" />
+			</p:column>
+			
+			<p:column headerText="Apelido">
+				<h:outputText value="#{jogador.nomePerfil}" />
+			</p:column>
+			
+			<p:column headerText="sobrenome">
+				<h:outputText value="#{jogador.sobrenome}" />
+			</p:column>
+			
+			<p:column headerText="senha">
+				<h:outputText value="#{jogador.senha}" />
+			</p:column>
+			
+			<p:column headerText="É capitão do Time?">
+				<h:outputText value="#{jogador.capdotime}" />
+			</p:column>
+
+			<p:column headerText="Ações">
+				<p:commandButton icon="ui-icon-trash" title="Remove este jogador"
+					action="#{jogadoresBean.remover(jogador)}" update="@form">
+					<p:confirm header="Confirma exclusão."
+						message="Você tem certeza que quer excluir #{jogador.nome}?"
+						icon="ui-icon-alert" />
+				</p:commandButton>
+
+				<p:button icon="ui-icon-pencil" title="Altera este jogador"
+					href="jogador.xhtml?id=#{jogador.id}" target="_blank" />
+
+
+			</p:column>
+
+		</p:dataTable>
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Sim" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="Não" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:confirmDialog>
+	</h:form>
+</h:body>
+</html>

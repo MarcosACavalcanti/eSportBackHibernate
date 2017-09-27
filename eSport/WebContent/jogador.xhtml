@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+
+	<f:metadata>
+		<f:viewParam name="id" value="#{clienteBean.idEdicao}" />
+	</f:metadata>
+
+	<p:messages globalOnly="true" autoUpdate="true" />
+	<p:growl globalOnly="true" autoUpdate="true" />
+	<h:form>
+		<p:panel header="Cadastro de Clientes">
+			<h:panelGrid columns="3">
+				<p:outputLabel for="nomeCliente" value="Nome:" />
+				<p:inputText id="nomeCliente" value="#{clienteBean.cliente.nome}" />
+				<p:message for="nomeCliente" />
+
+				<p:outputLabel for="clienteCPF" value="CPF:" />
+				<p:inputMask id="clienteCPF" value="#{clienteBean.cliente.CPF}"
+					mask="999.999.999-99" />
+				<p:message for="clienteCPF" />
+			</h:panelGrid>
+
+			<f:facet name="footer">
+				<p:commandButton action="#{clienteBean.eventoInserir()}"
+					value="Cadastrar" update="@form"
+					rendered="#{clienteBean.cliente.id eq null}" />
+				<p:commandButton action="#{clienteBean.eventoAtualizar()}"
+					rendered="#{clienteBean.cliente.id ne null}" value="Atualizar"
+					update="@form" />
+			</f:facet>
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

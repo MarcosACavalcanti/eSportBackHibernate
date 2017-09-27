@@ -2,43 +2,43 @@ package eSport;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "JOGADOR")
-@SequenceGenerator(name = "SEQUENCE.JOGADOR_ID_SEQ", 
-		sequenceName = "JOGADOR_ID_SEQ", allocationSize = 0)
+@NamedQueries({
+	@NamedQuery(name="jogador.findAll",
+			query="SELECT c FROM Jogador c ORDER BY c.nome ASC")
+	}
+)
+@SequenceGenerator(name = "JOG_SEQ", sequenceName = "JOGADOR_SEQ", allocationSize = 1)
 
 public class Jogador implements Serializable {
 	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4278573543695575734L;
+	private static final long serialVersionUID = -961847459842325449L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, 
-			generator = "SEQUENCE.JOGADOR_ID_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JOG_SEQ")
 	private Integer id;
-	@Column(name="NOME")
+	
+	@NotBlank
 	private String nome;
-	@Column(name="NOMEUSUARIO")
 	private String nomeUsuario;
-	@Column(name="NOMEPERFIL")
 	private String nomePerfil;
-	@Column(name="SOBRENOME")
 	private String sobrenome;
-	@Column(name="SENHA")
 	private String senha;
-	@Column(name="Capitao_do_Time")
 	private Integer capdotime;
 	
 	@OneToOne()

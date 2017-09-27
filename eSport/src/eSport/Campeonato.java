@@ -1,43 +1,34 @@
 package eSport;
 
-import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
+import java.io.Serializable;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 
 
 @Entity
-@Table(name = "CAMPEONATO")
-@SequenceGenerator(name = "SEQUENCE.CAMPEONATO_ID_SEQ", 
-		sequenceName = "CAMPEONATO_ID_SEQ", allocationSize = 0)
+@SequenceGenerator(name = "CAMP_SEQ", sequenceName = "CAMPEONATO_SEQ", allocationSize = 1)
 public class Campeonato implements Serializable {
-	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4585946173214080193L;
+	private static final long serialVersionUID = 4685489328839996782L;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CAMP_SEQ")
 	private Integer id;
-	@Column(name="Campeonato")
 	private String campeonato;
 	@OneToOne()
 	private Organizacao organizacao_Campeonato;
-	@Column(name="descricao")
 	private String descricao;
-	@Column(name="jogo")
-	private Jogo jogo;
 	
 	public Integer getId() {
 		return id;
@@ -50,12 +41,6 @@ public class Campeonato implements Serializable {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-	public Jogo getJogo() {
-		return jogo;
-	}
-	public void setJogo(Jogo jogo) {
-		this.jogo = jogo;
 	}
 	public String getCampeonato() {
 		return campeonato;
