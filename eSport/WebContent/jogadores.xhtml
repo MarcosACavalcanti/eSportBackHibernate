@@ -11,10 +11,10 @@
 	<p:messages globalOnly="true" autoUpdate="true" />
 	<p:growl globalOnly="true" autoUpdate="true" />
 
-	<h:form id="jogadoressTableForm">
+	<h:form id="jogadoresTableForm">
 
 		<p:dataTable id="jogadoresTable" var="jogador"
-			value="#{jogadoressBean.jogadores}">
+			value="#{jogadoresBean.jogadores}">
 			<p:column headerText="Id">
 				<h:outputText value="#{jogador.id}" />
 			</p:column>
@@ -42,9 +42,8 @@
 			<p:column headerText="É capitão do Time?">
 				<h:outputText value="#{jogador.capdotime}" />
 			</p:column>
-
 			<p:column headerText="Ações">
-				<p:commandButton icon="ui-icon-trash" title="Remove este jogador"
+							<p:commandButton icon="ui-icon-trash" title="Remove este jogador"
 					action="#{jogadoresBean.remover(jogador)}" update="@form">
 					<p:confirm header="Confirma exclusão."
 						message="Você tem certeza que quer excluir #{jogador.nome}?"
@@ -53,9 +52,8 @@
 
 				<p:button icon="ui-icon-pencil" title="Altera este jogador"
 					href="jogador.xhtml?id=#{jogador.id}" target="_blank" />
-
-
-			</p:column>
+					
+					</p:column>
 
 		</p:dataTable>
 		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">

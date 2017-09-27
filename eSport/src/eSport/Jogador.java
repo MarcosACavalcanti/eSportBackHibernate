@@ -15,19 +15,14 @@ import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="jogador.findAll",
+	@NamedQuery(name="Jogador.findAll",
 			query="SELECT c FROM Jogador c ORDER BY c.nome ASC")
 	}
 )
 @SequenceGenerator(name = "JOG_SEQ", sequenceName = "JOGADOR_SEQ", allocationSize = 1)
 
-public class Jogador implements Serializable {
+public class Jogador {
 	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -961847459842325449L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JOG_SEQ")

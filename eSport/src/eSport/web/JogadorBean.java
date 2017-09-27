@@ -43,7 +43,7 @@ public class JogadorBean {
 	}
 
 	public void eventoAtualizar() {
-		this.jogadorServico.atualizar(this.jogador);
+		this.jogadorServico.atualizar(jogador);
 
 		FacesMessage msg = new FacesMessage();
 		msg.setSummary("Oh Que Atualização!!!!");
